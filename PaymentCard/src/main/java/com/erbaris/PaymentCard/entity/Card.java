@@ -14,9 +14,9 @@ import org.csystem.util.numeric.NumberUtil;
 
 public class Card {
     public final long cardNumber;
-    public int bankId;
-    public int cardTypeCode;
-    public int cardSerialNumber;
+    public final int bankId;
+    public final int cardTypeCode;
+    public final int cardSerialNumber;
     private final int[] digits;
 
     public Card(long cardNumber) {
@@ -26,15 +26,20 @@ public class Card {
 
         digits = NumberUtil.getDigits(cardNumber);
 
+        int tmpBankid = 0;
         for(int i = 0; i < 6; i++){
-            bankId += digits[i] * (int)Math.pow(10, 5 - i);
+            tmpBankid += digits[i] * (int)Math.pow(10, 5 - i);
         }
+        bankId = tmpBankid;
 
         cardTypeCode = 10 * digits[6] + digits[7];
 
+        int tmpCardSerialNumber = 0;
         for(int i = 8; i < 16; i++){
-            cardSerialNumber += digits[i] * (int)Math.pow(10, 14 - i);
+            tmpCardSerialNumber += digits[i] * (int)Math.pow(10, 14 - i);
         }
+
+        cardSerialNumber = tmpCardSerialNumber;
 
     }
 
