@@ -13,7 +13,7 @@ package com.erbaris.PaymentCard.entity;
 import org.csystem.util.numeric.NumberUtil;
 
 public class Card {
-    public long cardNumber;
+    public final long cardNumber;
     public int bankId;
     public int cardTypeCode;
     public int cardSerialNumber;
